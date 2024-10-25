@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgForm } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
+import { TodosEditComponent } from '../todos-edit/todos-edit.component';
 
 
 
@@ -29,9 +30,10 @@ import { FormsModule }   from '@angular/forms';
   styleUrl: './todos.component.scss'
 })
 export class TodosComponent {
+  [x: string]: any;
 
 
- constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}) { }
+ constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}, private dialog: MatDialog) { }
 
   displayedColumns = ['checkbox', 'title', 'action'];
 
@@ -91,8 +93,9 @@ export class TodosComponent {
       this.table.renderRows();
     }
 
-    onEdit() {
-      
+
+    openEditTask() {
+      this.dialog.open(TodosEditComponent);
     }
 
     close() {
