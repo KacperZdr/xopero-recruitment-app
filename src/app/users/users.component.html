@@ -1,0 +1,54 @@
+<div class="add-user-btn">
+  <a mat-fab extended (click)="openAddEditUserForm()">
+    <mat-icon>person_add</mat-icon>
+    Add User
+  </a>
+</div>
+
+<!-- @for (user of userList; track user.id) {
+<h3>{{ user.id }}</h3>
+} -->
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="userList">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-flat-button
+          (click)="openAddEditTodoForm(element.id, element.name)"
+        >
+          <mat-icon>list_alt</mat-icon>TODO LIST
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>manage_accounts</mat-icon>EDIT
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

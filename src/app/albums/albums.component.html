@@ -1,0 +1,37 @@
+<mat-drawer-container class="parent" autosize>
+  <mat-drawer #drawer mode="over" class="side" opened="true">
+    <mat-list>
+      <div mat-subheader>
+        <h2><mat-icon matListItemIcon>photo_library</mat-icon>Albums</h2>
+      </div>
+      @for (album of albumList; track album.id) {
+      <mat-list-item>
+        <mat-icon matListItemIcon>photo_library</mat-icon>
+        <button mat-button (click)="albumPhotos(album.id); drawer.close()">
+          <div matListItemTitle>{{ album.title }}</div>
+        </button>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-drawer>
+
+  <div class="content">
+    <div>
+      <button mat-fab extended type="button" (click)="drawer.toggle()">
+        Toggle Album list
+      </button>
+    </div>
+    <div class="content">
+      @for (photo of filteredPhotosList; track photo.id) {
+      <mat-card appearance="outlined" class="album-photo-card">
+        <img
+          mat-card-image
+          src="{{ photo.url }}"
+          alt="Image of {{ photo.title }}"
+          class="album-photo"
+        />
+      </mat-card>
+      }
+    </div>
+  </div>
+</mat-drawer-container>

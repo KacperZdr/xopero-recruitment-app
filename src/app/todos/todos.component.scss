@@ -1,0 +1,63 @@
+.dialog-title h1, h3 {
+    text-align: center;
+}
+
+.dialog-box {
+    padding-top: 10px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding-bottom: 10px;
+
+}
+
+#submitbtn  {
+    margin: 0px 30px 20px;
+}
+
+.dialog-action {
+    // padding: 0px 25px 20px;
+    display: flex;
+    button {
+        margin: 0px 30px 20px;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    padding: 15px;
+    margin: 15px;
+}
+
+.demo-table {
+    width: 100%;
+}
+
+.mat-column-checkbox {
+    justify-content: center;
+    flex: 1;
+}
+
+.mat-column-title {
+    flex: 8;
+    width: auto;
+}
+
+.mat-column-action {
+    justify-content: center;
+    align-content: center;
+    flex: 2;
+    .mat-icon{
+        margin-top: 10px;
+        width: 20px;
+    }
+}
+
+.mat-mdc-table .mdc-data-table__row {
+    height: 30px;
+}

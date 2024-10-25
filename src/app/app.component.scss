@@ -1,0 +1,61 @@
+/* TOOLBAR */
+
+.mat-toolbar {
+    height: 60px;
+}
+
+#menuTitle {
+    font-size: medium;
+    margin-right: 20px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+@media (min-width: 900px) {
+    #menuIcon {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .top-menu-item {
+        display: none;
+    }
+}
+
+
+/* SIDENAV */
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+}
+
+.mat-sidenav {
+    background-color: #673ab7;
+}
+
+.side-menu-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu-item {
+    color: #eee !important;
+    margin: 5px 30px 5px;
+}
+
+@media (min-width: 900px) {
+    .mat-sidenav {
+        display: none;
+    }
+}
+
+/* CONTENT */
+

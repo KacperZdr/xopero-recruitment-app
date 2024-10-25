@@ -1,0 +1,46 @@
+
+.parent {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: calc(100vh - 60px);    
+    flex-direction: column;
+}
+
+.content {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    gap: 10px;
+}
+
+.side {
+    flex: auto;
+    flex-grow: 1;
+    width: 400px;
+}
+
+
+.album-photo-card {
+    height: auto;
+    width: auto;
+}
+
+.album-photo {
+    height: 300px;
+    width: 300px;
+}
+
+.mat-mdc-subheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mat-icon {
+        padding-right: 10px;
+    }
+}
