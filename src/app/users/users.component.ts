@@ -8,8 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TodosComponent } from '../todos/todos.component';
 import { NgForm, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule, MatTable } from '@angular/material/table';
+import { DataService } from '../services/data.service';
 
 
 
@@ -27,9 +28,12 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
     http = inject(HttpClient)
     userList: any = [];
+    message:any = '';
+
 
     ngOnInit(): void {
       this.fetchUsers();
+      this.serviceData.currentValue.subscribe(message => this.message = message)
     }
     
     fetchUsers() {
@@ -43,7 +47,7 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
 
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private serviceData: DataService) {}
   
   openEditUserForm(user: any) {
     this.dialog.open(UserAddEditComponent, {

@@ -12,6 +12,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgForm } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
 import { TodosEditComponent } from '../todos-edit/todos-edit.component';
+import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -31,10 +33,16 @@ import { TodosEditComponent } from '../todos-edit/todos-edit.component';
 })
 export class TodosComponent {
   [x: string]: any;
+  clickEventsubscription:Subscription;
+
+  
 
 
-
- constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}, private dialog: MatDialog) { }
+ constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}, private dialog: MatDialog,  private serviceData: DataService) { 
+  this.clickEventsubscription = this.serviceData.getClickEvent().subscribe(()=>{
+  this.updateTable();
+  })
+ }
 
   displayedColumns = ['checkbox', 'title', 'action'];
 
@@ -44,10 +52,12 @@ export class TodosComponent {
     filteredTodos: any = [];
     dUserId: any = [];
     nameUser = '';
+    updatedTask:any  = "";
 
     ngOnInit(): void {
       this.fetchUsers();
       this.fetchTodos(this.data.userId, this.data.userName);
+      this.serviceData.currentValue.subscribe(updatedTask => this.updatedTask = updatedTask)
     }
     
     fetchUsers() {
@@ -102,7 +112,12 @@ export class TodosComponent {
       }
     });
     }
-
+//
+    updateTable(){
+      this.filteredTodos[this.updatedTask.id].title = this.updatedTask.task;
+      this.table.renderRows();
+    }
+//
     close() {
     this.dialogRef.close();
   }

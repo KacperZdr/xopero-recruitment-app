@@ -1,10 +1,11 @@
 import { Component, Inject,  Output, EventEmitter  } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef,} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NgForm, FormsModule  } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 
 
@@ -18,27 +19,33 @@ import { NgForm, FormsModule  } from '@angular/forms';
 })
 export class TodosEditComponent{
   taskName = "";
-  updatedTask  = "";
+  tableIndex: any  = [];
+  updatedTask: any  = [];
 
 
-  constructor(private dialogRef: MatDialogRef<TodosEditComponent>, @Inject(MAT_DIALOG_DATA) public dataTask: {index: any, task: any}, private dialog: MatDialog) {}
+  constructor(private dialogRef: MatDialogRef<TodosEditComponent>, @Inject(MAT_DIALOG_DATA) public dataTask: {index: any, task: any}, private dialog: MatDialog,  private serviceData: DataService) {}
 
   ngOnInit(): void {
       this.onEdit (this.dataTask.index, this.dataTask.task);
+      this.serviceData.currentValue.subscribe(updatedTask => this.updatedTask = updatedTask)
     }
-
-
+//
+newValue(task: any) {
+  this.serviceData.changeValue(task);
+}
+//
 onEdit (index: any, task: any ) {
-  console.log (task + ' index: ' + index);
   this.taskName = task;
+  this.tableIndex = index;
 }
 
 onSubmitEdit(form: NgForm) {
   this.updatedTask = form.value;
+  this.updatedTask.id = this.tableIndex;
   console.log(this.updatedTask);
-
+  this.newValue(this.updatedTask);
+  this.serviceData.sendClickEvent();
 }
-
 
 close() {
     this.dialogRef.close();
