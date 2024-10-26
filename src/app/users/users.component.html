@@ -11,15 +11,8 @@
     />
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input
-      matInput
-      type="text"
-      id="password"
-      ngModel
-      name="password"
-      required=""
-    />
+    <mat-label>Name</mat-label>
+    <input matInput type="text" id="password" ngModel name="name" required="" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Email</mat-label>
@@ -75,7 +68,7 @@
         >
           <mat-icon>list_alt</mat-icon>TODO LIST
         </button>
-        <button mat-button color="primary" (click)="openEditUserForm()">
+        <button mat-button color="primary" (click)="openEditUserForm(element)">
           <mat-icon>manage_accounts</mat-icon>EDIT
         </button>
         <button mat-icon-button color="warn" (click)="onDelete(i)">

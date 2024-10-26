@@ -9,31 +9,34 @@
 }
 
 .content {
-    padding: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: flex-start;
+    align-items: center;
     gap: 10px;
+    button {
+        display: blocks;
+        margin: 20px;
+    }
 }
+
+.album-photo-card {
+    display: block ;
+    flex:1;
+}
+
+
+
+
+
+
 
 .side {
     flex: auto;
     flex-grow: 1;
     width: 400px;
-}
-
-
-.album-photo-card {
-    height: auto;
-    width: auto;
-}
-
-.album-photo {
-    height: 300px;
-    width: 300px;
 }
 
 .mat-mdc-subheader {

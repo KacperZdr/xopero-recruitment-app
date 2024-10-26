@@ -1,5 +1,6 @@
 
 
+
 .dialog-box {
     padding-top: 10px !important;
     display: flex;
@@ -7,6 +8,8 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+    flex: 1;
+
 }
 
 .dialog-action {

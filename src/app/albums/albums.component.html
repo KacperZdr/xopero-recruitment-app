@@ -23,14 +23,14 @@
     </div>
     <div class="content">
       @for (photo of filteredPhotosList; track photo.id) {
-      <mat-card appearance="outlined" class="album-photo-card">
-        <img
-          mat-card-image
-          src="{{ photo.url }}"
-          alt="Image of {{ photo.title }}"
-          class="album-photo"
-        />
-      </mat-card>
+
+      <img
+        mat-card-image
+        src="{{ photo.url }}"
+        alt="Image of {{ photo.title }}"
+        class="album-photo-card"
+      />
+
       }
     </div>
   </div>

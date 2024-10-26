@@ -45,8 +45,14 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
   constructor(private dialog: MatDialog) {}
   
-  openEditUserForm() {
-    this.dialog.open(UserAddEditComponent)
+  openEditUserForm(user: any) {
+    this.dialog.open(UserAddEditComponent, {
+      data: {
+        username: user.username,
+        name: user.name,
+        email: user.email,
+      }
+    });
   }
   
   openAddEditTodoForm(id: any, name: any) {
@@ -60,7 +66,16 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
 
   onSubmit(form: NgForm){
+    console.log(form);
+    this.userList.push({
+      username: form.controls['username'].value,
+      name: form.controls['name'].value,
+      email: form.controls['email'].value
+    })
 
+      console.log(this.userList);
+      this.table.renderRows();
+      form.reset()
   }
 
       @ViewChild(MatTable)
