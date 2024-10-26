@@ -69,7 +69,11 @@
         >
           <mat-icon>list_alt</mat-icon>TODO LIST
         </button>
-        <button mat-button color="primary" (click)="openEditUserForm(element)">
+        <button
+          mat-button
+          color="primary"
+          (click)="openEditUserForm(i, element)"
+        >
           <mat-icon>manage_accounts</mat-icon>EDIT
         </button>
         <button mat-icon-button color="warn" (click)="onDelete(i)">

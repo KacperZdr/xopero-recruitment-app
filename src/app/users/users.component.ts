@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule, MatTable } from '@angular/material/table';
 import { DataService } from '../services/data.service';
-
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -25,15 +25,16 @@ import { DataService } from '../services/data.service';
 export class UsersComponent implements OnInit {
 
 displayedColumns = ['username', 'name', 'email', 'action'];
-
+    clickEventsubscription:Subscription;
     http = inject(HttpClient)
     userList: any = [];
     message:any = '';
+    updatedUser: any;
 
 
     ngOnInit(): void {
       this.fetchUsers();
-      this.serviceData.currentValue.subscribe(message => this.message = message)
+      this.serviceData.currentValue.subscribe(updatedUser => this.updatedUser = updatedUser)
     }
     
     fetchUsers() {
@@ -47,16 +48,22 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
 
 
-  constructor(private dialog: MatDialog, private serviceData: DataService) {}
+  constructor(private dialog: MatDialog, private serviceData: DataService) {
+    this.clickEventsubscription = this.serviceData.getClickEvent().subscribe(()=>{
+    this.updateTableUser();
+  })
+  }
   
-  openEditUserForm(user: any) {
+  openEditUserForm(id: any, user: any) {
     this.dialog.open(UserAddEditComponent, {
       data: {
         username: user.username,
         name: user.name,
         email: user.email,
+        tableId: id
       }
     });
+    
   }
   
   openAddEditTodoForm(id: any, name: any) {
@@ -84,6 +91,13 @@ displayedColumns = ['username', 'name', 'email', 'action'];
 
       @ViewChild(MatTable)
   table!: MatTable<any>;
+
+updateTableUser(){
+      this.userList[this.updatedUser.id].username = this.updatedUser.username;
+      this.userList[this.updatedUser.id].name = this.updatedUser.name;
+      this.userList[this.updatedUser.id].email = this.updatedUser.email;
+      this.table.renderRows();
+    }
 
 
   onDelete(index: any) {

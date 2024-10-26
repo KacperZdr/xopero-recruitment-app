@@ -33,14 +33,14 @@ import { Subscription } from 'rxjs';
 })
 export class TodosComponent {
   [x: string]: any;
-  clickEventsubscription:Subscription;
+  clickEventsubscription2:Subscription;
 
   
 
 
  constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}, private dialog: MatDialog,  private serviceData: DataService) { 
-  this.clickEventsubscription = this.serviceData.getClickEvent().subscribe(()=>{
-  this.updateTable();
+  this.clickEventsubscription2 = this.serviceData.getClickEvent2().subscribe(()=>{
+  this.updateTableTodo();
   })
  }
 
@@ -113,7 +113,7 @@ export class TodosComponent {
     });
     }
 //
-    updateTable(){
+    updateTableTodo(){
       this.filteredTodos[this.updatedTask.id].title = this.updatedTask.task;
       this.table.renderRows();
     }

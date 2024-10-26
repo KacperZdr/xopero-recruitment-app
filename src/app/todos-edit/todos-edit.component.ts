@@ -39,12 +39,12 @@ onEdit (index: any, task: any ) {
   this.tableIndex = index;
 }
 
-onSubmitEdit(form: NgForm) {
+onSubmitEditTodo(form: NgForm) {
   this.updatedTask = form.value;
   this.updatedTask.id = this.tableIndex;
   console.log(this.updatedTask);
   this.newValue(this.updatedTask);
-  this.serviceData.sendClickEvent();
+  this.serviceData.sendClickEvent2();
 }
 
 close() {

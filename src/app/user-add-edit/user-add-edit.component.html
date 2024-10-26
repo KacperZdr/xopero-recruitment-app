@@ -5,7 +5,7 @@
   <form (ngSubmit)="onSubmitEdit(userEditForm)" #userEditForm="ngForm">
     <div mat-dialog-content class="dialog-box">
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>Username</mat-label>
         <input
           matInput
           ngModel="{{ dataUser.username }}"
@@ -14,7 +14,7 @@
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
+        <mat-label>Name</mat-label>
         <input matInput ngModel="{{ dataUser.name }}" name="name" />
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -29,7 +29,9 @@
     </div>
     <div mat-dialog-actions class="dialog-action">
       <button mat-raised-button (click)="close()">Cancel</button>
-      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="primary" type="submit" (click)="close()">
+        Save
+      </button>
     </div>
   </form>
 </div>
