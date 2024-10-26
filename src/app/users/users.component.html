@@ -1,9 +1,42 @@
-<div class="add-user-btn">
-  <a mat-fab extended (click)="openAddEditUserForm()">
+<form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      type="text"
+      id="username"
+      ngModel
+      name="username"
+      required=""
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="text"
+      id="password"
+      ngModel
+      name="password"
+      required=""
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="text" id="email" ngModel name="email" required="" />
+  </mat-form-field>
+  <button
+    mat-fab
+    extended
+    [disabled]="userForm.invalid"
+    color="accent"
+    type="submit"
+    id="submitbtn"
+  >
     <mat-icon>person_add</mat-icon>
     Add User
-  </a>
-</div>
+  </button>
+</form>
 
 <!-- @for (user of userList; track user.id) {
 <h3>{{ user.id }}</h3>
@@ -14,10 +47,10 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+    <!-- Username Column -->
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
@@ -35,15 +68,18 @@
     <!-- Action Column -->
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let element; let i = index">
         <button
           mat-flat-button
           (click)="openAddEditTodoForm(element.id, element.name)"
         >
           <mat-icon>list_alt</mat-icon>TODO LIST
         </button>
-        <button mat-button color="primary">
+        <button mat-button color="primary" (click)="openEditUserForm()">
           <mat-icon>manage_accounts</mat-icon>EDIT
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(i)">
+          <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

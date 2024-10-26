@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component,ViewChild , Inject, OnInit, input, inject } from '@angular/core';
+import { Component,ViewChild , Inject, OnInit, inject, Input, Output, EventEmitter } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTableDataSource, MatTableModule, MatTable } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +31,7 @@ import { TodosEditComponent } from '../todos-edit/todos-edit.component';
 })
 export class TodosComponent {
   [x: string]: any;
+
 
 
  constructor(private dialogRef: MatDialogRef<TodosComponent>, @Inject(MAT_DIALOG_DATA) public data: {userId: any, userName: any}, private dialog: MatDialog) { }
@@ -93,9 +94,13 @@ export class TodosComponent {
       this.table.renderRows();
     }
 
-
-    openEditTask() {
-      this.dialog.open(TodosEditComponent);
+    openEditTask(index: any, task: any) {
+      this.dialog.open(TodosEditComponent, {
+      data: {
+        index: index,
+        task: task
+      }
+    });
     }
 
     close() {

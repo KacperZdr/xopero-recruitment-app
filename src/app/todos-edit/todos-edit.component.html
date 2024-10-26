@@ -1,10 +1,16 @@
-<form>
+<form (ngSubmit)="onSubmitEdit(taskEditForm)" #taskEditForm="ngForm">
   <div mat-dialog-title class="dialog-title">
     <h1>Edit Task</h1>
   </div>
   <mat-form-field>
     <mat-label>Edit Task</mat-label>
-    <input matInput type="text" id="task" ngModel name="task" value="Sushi" />
+    <input
+      matInput
+      type="text"
+      id="task"
+      ngModel="{{ taskName }}"
+      name="task"
+    />
   </mat-form-field>
   <div mat-dialog-actions class="dialog-action">
     <button mat-raised-button color="primary" type="submit">Save</button>

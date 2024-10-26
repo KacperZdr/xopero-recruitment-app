@@ -7,3 +7,12 @@
 .example-container {
     margin: 20px;
 }
+
+form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    gap: 20px;
+}

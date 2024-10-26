@@ -48,8 +48,8 @@
       <!-- Action Column -->
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let i = index">
-          <button mat-icon-button (click)="openEditTask()">
+        <mat-cell *matCellDef="let element; let i = index">
+          <button mat-icon-button (click)="openEditTask(i, element.title)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="onDelete(i)">
